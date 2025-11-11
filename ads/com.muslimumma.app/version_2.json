@@ -1,1 +1,358 @@
+{
+  "version": 2,
+  "updated_at": "2025-11-12T00:00:00Z",
+  "schema_version": "2.0.0",
 
+  "global": {
+    "enabled": true,
+    "debug_mode": false,
+    "max_ads_per_day": 20,
+    "max_ads_per_session": 5,
+    "default_cooldown_seconds": 60,
+    "min_session_duration_seconds": 30,
+    "
+_tracking": {
+      "enabled": true,
+      "endpoint": "https://analytics.yourapi.com/ad-events",
+      "batch_size": 10,
+      "flush_interval_seconds": 30
+    },
+    "fallback_behavior": {
+      "on_network_error": "show_cached",
+      "on_invalid_ad": "skip",
+      "cache_duration_hours": 24
+    }
+  },
+
+  "targeting": {
+    "device_types": ["phone", "tablet"],
+    "os_versions": {
+      "android": {
+        "min": 21,
+        "max": null
+      },
+      "ios": {
+        "min": 13,
+        "max": null
+      }
+    },
+    "user_segments": [
+      {
+        "id": "premium_users",
+        "criteria": {
+          "subscription_status": "active",
+          "tier": ["premium", "enterprise"]
+        }
+      },
+      {
+        "id": "new_users",
+        "criteria": {
+          "install_days_ago": {"max": 7}
+        }
+      },
+      {
+        "id": "power_users",
+        "criteria": {
+          "daily_active_days": {"min": 20}
+        }
+      }
+    ]
+  },
+
+  "placements": [
+    {
+      "id": "home_screen",
+      "name": "Home Screen Banner",
+      "type": "banner",
+      "max_frequency": {
+        "per_session": 2,
+        "per_day": 5
+      },
+      "display_rules": {
+        "min_interval_seconds": 120,
+        "position": "bottom",
+        "dismissible": true,
+        "auto_hide_seconds": null
+      }
+    },
+    {
+      "id": "interstitial_app_open",
+      "name": "App Launch Interstitial",
+      "type": "fullscreen",
+      "max_frequency": {
+        "per_session": 1,
+        "per_day": 2
+      },
+      "display_rules": {
+        "min_interval_seconds": 3600,
+        "skippable_after_seconds": 5,
+        "max_display_seconds": 30
+      }
+    },
+    {
+      "id": "rewarded_video",
+      "name": "Reward Video",
+      "type": "video",
+      "max_frequency": {
+        "per_session": 10,
+        "per_day": 20
+      },
+      "display_rules": {
+        "reward_on_complete": true,
+        "min_watch_seconds": 15
+      }
+    }
+  ],
+
+  "ads": [
+    {
+      "id": "ad_001",
+      "name": "Task Manager Promo",
+      "type": "fullscreen",
+      "placement_ids": ["interstitial_app_open"],
+      
+      "content": {
+        "title": "Boost Your Productivity!",
+        "description": "Try our new task manager app.",
+        "image_url": "https://yourcdn.com/ads/ad1_fullscreen.png",
+        "video_url": null,
+        "button_text": "Install Now",
+        "button_color": "#4CAF50",
+        "background_color": "#FFFFFF",
+        "text_color": "#000000"
+      },
+
+      "action": {
+        "type": "open_url",
+        "value": "https://yourwebsite.com/myapp",
+        "fallback_action": {
+          "type": "open_store",
+          "value": "com.yourapp.taskmanager"
+        }
+      },
+
+      "enabled": true,
+      "priority": 1,
+      "weight": 100,
+
+      "limits": {
+        "max_impressions": {
+          "per_user_per_day": 3,
+          "per_user_total": 50,
+          "global_daily": 10000
+        },
+        "max_clicks": {
+          "per_user_per_day": 1,
+          "per_user_total": 5
+        },
+        "cooldown_seconds": 180,
+        "budget": {
+          "type": "impressions",
+          "total": 100000,
+          "remaining": 95000
+        }
+      },
+
+      "conditions": {
+        "start_date": "2025-11-12T00:00:00Z",
+        "end_date": "2026-01-01T00:00:00Z",
+        "app_version": {
+          "min": 1,
+          "max": null,
+          "excluded": []
+        },
+        "geo": {
+          "allowed_countries": ["BD", "IN"],
+          "blocked_countries": [],
+          "allowed_regions": null,
+          "blocked_regions": null
+        },
+        "user_segments": {
+          "include": ["new_users", "power_users"],
+          "exclude": ["premium_users"]
+        },
+        "device": {
+          "types": ["phone", "tablet"],
+          "manufacturers": null,
+          "models": null
+        },
+        "time_of_day": {
+          "timezone": "Asia/Dhaka",
+          "allowed_hours": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+          "allowed_days": [1, 2, 3, 4, 5, 6, 7]
+        },
+        "network_type": ["wifi", "4g", "5g"],
+        "language": ["en", "bn"],
+        "custom_rules": [
+          {
+            "key": "feature_flag_new_ui",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+
+      "ab_test": {
+        "enabled": false,
+        "test_id": "ad_001_test_v1",
+        "variant": "A",
+        "traffic_allocation": 0.5
+      },
+
+      "tracking": {
+        "impression_urls": [
+          "https://analytics.yourapi.com/impression?ad_id=ad_001"
+        ],
+        "click_urls": [
+          "https://analytics.yourapi.com/click?ad_id=ad_001"
+        ],
+        "conversion_urls": [
+          "https://analytics.yourapi.com/conversion?ad_id=ad_001"
+        ],
+        "custom_events": {
+          "view_start": "https://analytics.yourapi.com/view_start?ad_id=ad_001",
+          "view_25": "https://analytics.yourapi.com/view_25?ad_id=ad_001",
+          "view_50": "https://analytics.yourapi.com/view_50?ad_id=ad_001",
+          "view_75": "https://analytics.yourapi.com/view_75?ad_id=ad_001",
+          "view_complete": "https://analytics.yourapi.com/view_complete?ad_id=ad_001",
+          "dismiss": "https://analytics.yourapi.com/dismiss?ad_id=ad_001"
+        }
+      },
+
+      "cache": {
+        "preload": true,
+        "cache_duration_hours": 24,
+        "required_assets": ["image_url"]
+      }
+    },
+
+    {
+      "id": "ad_002",
+      "name": "Special Offer Banner",
+      "type": "banner",
+      "placement_ids": ["home_screen"],
+      
+      "content": {
+        "image_url": "https://yourcdn.com/ads/ad2_banner.png",
+        "title": null,
+        "description": null
+      },
+
+      "action": {
+        "type": "open_deeplink",
+        "value": "myapp://offer/special"
+      },
+
+      "enabled": true,
+      "priority": 2,
+      "weight": 80,
+
+      "limits": {
+        "max_impressions": {
+          "per_user_per_day": 10,
+          "per_user_total": null,
+          "global_daily": null
+        },
+        "cooldown_seconds": 60
+      },
+
+      "conditions": {
+        "start_date": "2025-11-12T00:00:00Z",
+        "end_date": null,
+        "geo": {
+          "allowed_countries": ["BD"]
+        },
+        "user_segments": {
+          "exclude": ["premium_users"]
+        }
+      },
+
+      "tracking": {
+        "impression_urls": [
+          "https://analytics.yourapi.com/impression?ad_id=ad_002"
+        ],
+        "click_urls": [
+          "https://analytics.yourapi.com/click?ad_id=ad_002"
+        ]
+      },
+
+      "cache": {
+        "preload": true,
+        "cache_duration_hours": 12
+      }
+    },
+
+    {
+      "id": "ad_003",
+      "name": "New Feature Popup",
+      "type": "popup",
+      "placement_ids": ["home_screen"],
+      
+      "content": {
+        "title": "New Feature Unlocked!",
+        "description": "Check out our exciting new update.",
+        "image_url": "https://yourcdn.com/ads/ad3_popup.png",
+        "button_text": "Explore Now",
+        "dismiss_button_text": "Later"
+      },
+
+      "action": {
+        "type": "open_activity",
+        "value": "com.nelu.myapp.NewFeatureActivity",
+        "extras": {
+          "feature_id": "new_ui_v2",
+          "source": "ad_popup"
+        }
+      },
+
+      "enabled": true,
+      "priority": 3,
+      "weight": 60,
+
+      "limits": {
+        "max_impressions": {
+          "per_user_per_day": 1,
+          "per_user_total": 3
+        },
+        "cooldown_seconds": 600
+      },
+
+      "conditions": {
+        "geo": {
+          "allowed_countries": ["BD"]
+        },
+        "app_version": {
+          "min": 5
+        },
+        "user_segments": {
+          "include": ["new_users"]
+        }
+      },
+
+      "tracking": {
+        "impression_urls": [
+          "https://analytics.yourapi.com/impression?ad_id=ad_003"
+        ],
+        "click_urls": [
+          "https://analytics.yourapi.com/click?ad_id=ad_003"
+        ],
+        "custom_events": {
+          "dismiss": "https://analytics.yourapi.com/dismiss?ad_id=ad_003"
+        }
+      },
+
+      "cache": {
+        "preload": false,
+        "cache_duration_hours": 6
+      }
+    }
+  ],
+
+  "metadata": {
+    "config_id": "cfg_20251112_001",
+    "environment": "production",
+    "rollout_percentage": 100,
+    "min_sdk_version": "1.0.0",
+    "notes": "Initial production release with enhanced targeting"
+  }
+}
