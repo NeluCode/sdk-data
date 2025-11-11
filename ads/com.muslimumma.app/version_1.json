@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "updated_at": "2025-11-12T00:00:00Z",
+
+  "global": {
+    "enabled": true,
+    "max_ads_per_day": 20,
+    "default_cooldown_seconds": 60
+  },
+
+  "ads": [
+    {
+      "id": "ad_001",
+      "type": "fullscreen",
+      "title": "Boost Your Productivity!",
+      "description": "Try our new task manager app.",
+      "image_url": "https://yourcdn.com/ads/ad1_fullscreen.png",
+      "button_text": "Install Now",
+      "action": {
+        "type": "open_url",
+        "value": "https://yourwebsite.com/myapp"
+      },
+
+      "enabled": true,
+      "priority": 1,
+
+      "limits": {
+        "max_show_per_day": 3,
+        "cooldown_seconds": 180
+      },
+
+      "conditions": {
+        "min_app_version": 1,
+        "allowed_countries": ["BD", "IN"],
+        "blocked_countries": [],
+        "expires_at": "2026-01-01T00:00:00Z"
+      }
+    },
+
+    {
+      "id": "ad_002",
+      "type": "banner",
+      "image_url": "https://yourcdn.com/ads/ad2_banner.png",
+      "action": {
+        "type": "open_deeplink",
+        "value": "myapp://offer/special"
+      },
+
+      "enabled": true,
+      "priority": 2,
+
+      "limits": {
+        "max_show_per_day": 10
+      },
+
+      "conditions": {
+        "allowed_countries": ["BD"],
+        "expires_at": null
+      }
+    },
+
+    {
+      "id": "ad_003",
+      "type": "popup",
+      "title": "New Feature Unlocked!",
+      "description": "Check out our exciting new update.",
+      "image_url": "https://yourcdn.com/ads/ad3_popup.png",
+      "action": {
+        "type": "open_activity",
+        "value": "com.nelu.myapp.NewFeatureActivity"
+      },
+
+      "enabled": true,
+      "priority": 3,
+
+      "limits": {
+        "max_show_per_day": 1,
+        "cooldown_seconds": 600
+      },
+
+      "conditions": {
+        "allowed_countries": ["BD"],
+        "min_app_version": 5
+      }
+    }
+  ]
+}
