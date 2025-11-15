@@ -1,6 +1,6 @@
 {
   "provider": "Nelu Code",
   "productCode": "NC-PROD-4F7A5C9E-2D31-4B8C-AB1E-9834F1F6D7B2",
-  "verificationUrl": "https://raw.githubusercontent.com/NeluCode/sdk-data/refs/heads/dev/apps/NC-PROD-4F7A5C9E-2D31-4B8C-AB1E-9834F1F6D7B2/purchases.json",
+  "verificationUrl": "https://raw.githubusercontent.com/NeluCode/sdk-data/refs/heads/dev/apps/NC-PROD-4F7A5C9E-2D31-4B8C-AB1E-9834F1F6D7B2/purchases.txt",
   "expiryDate": "never"
 }
