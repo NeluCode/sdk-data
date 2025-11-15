@@ -1,14 +1,7 @@
 {
   "provider": "Nelu Code",
-  "productId": "nelucode_abc123",
-  "purchaseCode": "trx_xyz789",
+  "productCode": "NC-PROD-4F7A5C9E-2D31-4B8C-AB1E-9834F1F6D7B2",
   "packageName": "com.example.myapp",
   "customerEmail": "customer@example.com",
-  "purchaseDate": "2025-11-15",
-  "expiryDate": "never",
-  "checksum": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5",
-  "features": {
-    "maxDevices": -1,
-    "supportUntil": "2026-11-15"
-  }
+  "expiryDate": "never"
 }
