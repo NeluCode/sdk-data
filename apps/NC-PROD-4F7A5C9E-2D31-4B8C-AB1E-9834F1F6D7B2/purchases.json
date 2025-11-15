@@ -2,6 +2,7 @@
   {
     "purchaseCode": "NC-PUR-12345678",
     "packageName": "com.nelu.nelucode",
-    "isMonetized": false
+    "isMonetized": false,
+    "time": 1000000000
   }
 ]
