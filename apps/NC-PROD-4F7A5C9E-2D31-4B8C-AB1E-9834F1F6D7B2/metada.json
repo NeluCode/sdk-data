@@ -1,0 +1,16 @@
+{
+  "provider": "Nelu Code",
+  "sdk": {
+    "name": "Nelu License Verification SDK",
+    "version": "1.0.0",
+    "build": 100,
+    "releaseDate": "2025-11-15"
+  },
+  "licenseData": {
+    "file": "licenses.json",
+    "formatVersion": 1,
+    "checksum": "sha256:UNKNOWN",
+    "lastUpdated": "2025-11-15"
+  },
+  "notes": "If license data fails to load, the SDK will not block the application. Blocking only occurs when license data is successfully loaded but invalid."
+}
