@@ -1,6 +1,6 @@
 {
   "provider": "Nelu Code",
-  "appId": "nelucode_abc123",
+  "productId": "nelucode_abc123",
   "purchaseCode": "trx_xyz789",
   "packageName": "com.example.myapp",
   "customerEmail": "customer@example.com",
