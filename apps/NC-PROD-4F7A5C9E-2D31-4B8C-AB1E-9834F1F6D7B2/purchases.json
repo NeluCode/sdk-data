@@ -1,0 +1,18 @@
+[
+  {
+    "purchaseCode": "NC-PUR-12345678",
+    "packageName": "com.nelu.nelucode"
+  },
+  {
+    "purchaseCode": "NC-PUR-87654321",
+    "packageName": "com.customer.app"
+  },
+  {
+    "purchaseCode": "NC-PUR-11223344",
+    "packageName": null
+  },
+  {
+    "purchaseCode": "NC-PUR-55667788",
+    "packageName": "com.another.package"
+  }
+]
